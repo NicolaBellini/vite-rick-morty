@@ -16,10 +16,10 @@ export default {
 
 <template>
   <div class="wrapper d-flex">
-    <div class="container d-flex">
-      <div class="row row-cols-4 d-flex">
+    <div class="container d-flex flex-around">
+      <div class="row row-cols-3 d-flex">
         <Card
-          class="col m-3"
+          class="col m-3 mb-5"
           v-for="card in store.cardList"
           :key="card.id"
           :cardName="card.name"
@@ -27,6 +27,7 @@ export default {
           :cardGender="card.gender"
           :cardSpecies="card.species"
           :cardImage="card.image"
+          :cardLocation="card.location.name"
         />
       </div>
     </div>
