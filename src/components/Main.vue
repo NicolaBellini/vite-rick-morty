@@ -21,7 +21,19 @@ export default {
 
 <template>
   <div class="container">
-    <Card v-for="card in store.cardList" :key="card.id" :cardName="card.name" />
+    <div class="row row-cols-3">
+      <div class="col">
+        <Card
+          v-for="card in store.cardList"
+          :key="card.id"
+          :cardName="card.name"
+          :cardStatus="card.status"
+          :cardGender="card.gender"
+          :cardSpecies="card.species"
+          :cardImage="card.image"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
