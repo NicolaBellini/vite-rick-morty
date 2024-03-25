@@ -12,13 +12,11 @@ export default {
 
 <template>
   <div class="card" style="width: 18rem">
-    <img :src="cardImage" class="card-img-top" alt="..." />
+    <img :src="cardImage" class="card-img-top" :alt="cardName" />
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">
-        {{}}
-      </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h5 class="card-title">{{ cardName }}</h5>
+      <p class="card-text">{{ cardStatus }}</p>
+      <p class="card-text">{{ cardGender }}</p>
     </div>
   </div>
 </template>
