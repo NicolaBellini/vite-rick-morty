@@ -10,9 +10,7 @@ export default {
   components: {
     Card,
   },
-  mounted() {
-    console.log("main", this.store.cardLIst);
-  },
+  mounted() {},
 };
 </script>
 
@@ -23,7 +21,7 @@ export default {
 
 <template>
   <div class="container">
-    <!-- <Card class="" :name="this.store.cardList[0].name" /> -->
+    <Card v-for="card in store.cardList" :key="card.id" :cardName="card.name" />
   </div>
 </template>
 

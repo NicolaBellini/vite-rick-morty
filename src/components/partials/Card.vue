@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    name: String,
+    cardName: String,
     status: String,
     gender: String,
     species: String,
@@ -10,6 +10,6 @@ export default {
 };
 </script>
 
-<template>{{ name }}</template>
+<template>{{ cardName }}</template>
 
 <style lang="scss" scoped></style>
