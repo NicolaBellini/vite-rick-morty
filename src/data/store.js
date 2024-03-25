@@ -1,7 +1,6 @@
-	
-import { reactive } from 'vue'
+import { reactive } from "vue";
 
 export const store = reactive({
-  counter: 0,
-  mainTitle: 'Vite state'
-})
+  apiUrl: "https://rickandmortyapi.com/api/character",
+  cardLIst: [],
+});

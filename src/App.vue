@@ -1,21 +1,40 @@
 <script>
-import Header from './components/Header.vue'
-import Main from './components/Main.vue'
-  export default {
-    components:{
-      Header,
-      Main
-    }
-  }
+import { store } from "./data/store.js";
+import axios from "axios";
+import Header from "./components/Header.vue";
+import Main from "./components/Main.vue";
+export default {
+  components: {
+    Header,
+    Main,
+  },
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {
+    getApi() {
+      axios
+        .get(this.store.apiUrl)
+        .then((res) => {
+          this.store.cardLIst = res.data.results;
+        })
+        .catch((error) => console.log(error));
+      console.log("cardlist", this.store.cardLIst);
+    },
+  },
+  mounted() {
+    this.getApi();
+  },
+};
 </script>
 
 <template>
-  <Header />
+  <Header /><br />
   <Main />
 </template>
 
-
-
 <style lang="scss" scoped>
-@use './assets/scss/main.scss';
+@use "./assets/scss/main.scss";
 </style>
