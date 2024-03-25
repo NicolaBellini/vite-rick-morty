@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-  <div class="card" style="width: 18rem">
+  <div class="card my-card" style="width: 18rem">
     <img :src="cardImage" class="card-img-top" :alt="cardName" />
     <div class="card-body">
       <h5 class="card-title">{{ cardName }}</h5>
@@ -21,4 +21,8 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.my-card {
+  width: 20% !important;
+}
+</style>

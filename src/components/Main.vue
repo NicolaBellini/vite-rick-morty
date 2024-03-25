@@ -14,16 +14,12 @@ export default {
 };
 </script>
 
-<!-- :status:String,
-    :gender:string,
-    :species:string,
-    :image:string, -->
-
 <template>
-  <div class="container">
-    <div class="row row-cols-3">
-      <div class="col">
+  <div class="wrapper d-flex">
+    <div class="container d-flex">
+      <div class="row row-cols-4 d-flex">
         <Card
+          class="col m-3"
           v-for="card in store.cardList"
           :key="card.id"
           :cardName="card.name"
@@ -37,4 +33,8 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.row {
+  justify-content: center;
+}
+</style>
