@@ -11,19 +11,19 @@ export default {
     Card,
   },
   mounted() {
-    console.log(this.store.cardLIst);
+    console.log("main", this.store.cardLIst);
   },
 };
 </script>
-<!-- :name:this.s,
-    :status:String,
+
+<!-- :status:String,
     :gender:string,
     :species:string,
     :image:string, -->
 
 <template>
   <div class="container">
-    <Card class="" />
+    <!-- <Card class="" :name="this.store.cardList[0].name" /> -->
   </div>
 </template>
 

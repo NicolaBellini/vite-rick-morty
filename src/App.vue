@@ -18,12 +18,14 @@ export default {
       axios
         .get(this.store.apiUrl)
         .then((res) => {
+          console.log("nella function", res.data.results);
           this.store.cardLIst = res.data.results;
         })
         .catch((error) => console.log(error));
       console.log("cardlist", this.store.cardLIst);
     },
   },
+
   mounted() {
     this.getApi();
   },

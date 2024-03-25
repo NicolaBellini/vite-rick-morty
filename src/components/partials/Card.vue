@@ -3,13 +3,13 @@ export default {
   props: {
     name: String,
     status: String,
-    gender: string,
-    species: string,
-    image: string,
+    gender: String,
+    species: String,
+    image: String,
   },
 };
 </script>
 
-<template>ciaoo</template>
+<template>{{ name }}</template>
 
 <style lang="scss" scoped></style>
