@@ -11,23 +11,27 @@ export default {
   data() {
     return {
       store,
+      resultInfo:[]
+
     };
   },
   methods: {
     getApi() {
-      axios
-        .get(this.store.apiUrl)
+      axios.get(this.store.apiUrl)
         .then((res) => {
           console.log("nella function", res.data.results);
-          this.store.cardLIst = res.data.results;
+          this.resultInfo=res.data.results;
+          console.log('resultInfo',this.resultInfo);
+          
         })
         .catch((error) => console.log(error));
-      console.log("cardlist", this.store.cardLIst);
     },
+   
   },
 
   mounted() {
     this.getApi();
+    
   },
 };
 </script>
