@@ -37,6 +37,7 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   margin-top: 80px;
+  height: 100%;
   .row {
     justify-content: center;
   }

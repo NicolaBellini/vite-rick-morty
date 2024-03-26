@@ -18,7 +18,9 @@ export default {
       this.store.cardList = [];
       this.store.nameList = [];
       axios
-        .get(this.store.apiUrl)
+        .get(this.store.apiUrl, {
+          params: this.store.queryParams,
+        })
         .then((res) => {
           console.log("nella function", res.data.results);
           this.store.cardList = res.data.results;
