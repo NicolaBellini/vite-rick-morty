@@ -26,7 +26,13 @@ export default {
             <!-- INPUT STATUS -->
             <select class="form-select" aria-label="Default select example">
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
+              <option
+                v-for="(item, index) in this.store.statusList"
+                :key="index"
+                value="1"
+              >
+                {{ item }}
+              </option>
             </select>
             <!-- INPUT NOME -->
             <input
