@@ -15,6 +15,8 @@ export default {
   },
   methods: {
     getApi() {
+      this.store.cardList = [];
+      this.store.nameList = [];
       axios
         .get(this.store.apiUrl)
         .then((res) => {
