@@ -1,6 +1,7 @@
 <script>
 import { store } from "../data/store";
 import Card from "./partials/Card.vue";
+// import Loader from "./partials/Loader.vue";
 export default {
   data() {
     return {
@@ -9,6 +10,7 @@ export default {
   },
   components: {
     Card,
+    // Loader,
   },
   mounted() {},
 };

@@ -18,25 +18,32 @@ export default {
     getApi() {
       this.store.cardList = [];
       this.store.nameList = [];
-
+      this.store.statusList = [];
       axios
         .get(this.store.apiUrl, {
           params: this.store.queryParams,
         })
         .then((res) => {
-          console.log("nella function", res.data.results);
           this.store.cardList = res.data.results;
-          console.log("nello store", this.store.cardList[0]);
+          console.log("nello store", this.store.cardList[0].status);
           this.store.nameList = this.store.cardList.map((item) => item.name);
-          console.log(this.store.nameList);
+          this.store.cardList.forEach((item) => {
+            if (!this.store.statusList.includes(item.status)) {
+              this.store.statusList.push(item.status);
+            }
+          });
+          console.log(this.store.statusList);
+
           this.store.errorString = "";
           this.isError = false;
+          this.store.queryParams.name = "";
         })
         .catch(
           (error) => console.log(error),
           (this.store.errorString =
             "Non ci sono persone con quel nome in questo universo!!"),
-          (this.isError = true)
+          (this.isError = true),
+          (this.store.queryParams.name = "")
         );
     },
   },
@@ -50,8 +57,10 @@ export default {
 <template>
   <div class="wrapper">
     <Header @search="getApi()" /><br />
-    <div v-if="this.isError" class="error">{{ this.store.errorString }}</div>
-    <Main v-else-if="!this.isError" />
+    <Main v-if="!this.isError" />
+    <div v-else-if="this.isError" class="error">
+      {{ this.store.errorString }}
+    </div>
   </div>
 </template>
 
@@ -61,7 +70,7 @@ export default {
 .wrapper {
   background-image: linear-gradient(to right, black, rgb(72, 143, 0), black);
   .error {
-    height: 100vh;
+    height: 85vh;
     background-image: linear-gradient(to right, black, rgb(72, 143, 0), black);
     margin-top: 150px;
     color: greenyellow;

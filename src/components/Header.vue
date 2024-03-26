@@ -23,6 +23,12 @@ export default {
             />
           </a>
           <form class="d-flex" role="search">
+            <!-- INPUT STATUS -->
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+            </select>
+            <!-- INPUT NOME -->
             <input
               class="form-control me-2"
               type="search"
@@ -31,6 +37,7 @@ export default {
               v-model="this.store.queryParams.name"
               @key.up="$emit('search')"
             />
+            <!-- BOTTONE AVVIA RICERCA -->
             <button
               class="btn btn-outline-success"
               type="submit"
