@@ -17,7 +17,7 @@ export default {
 <template>
   <div class="wrapper d-flex">
     <div class="container d-flex flex-around">
-      <div class="row row-cols-3 d-flex">
+      <div class="row row-cols-1 d-flex row-cols-md-3">
         <Card
           class="col m-3 mb-5"
           v-for="card in store.cardList"

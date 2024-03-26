@@ -33,7 +33,7 @@ export default {
         <div class="gender">
           <h3>{{ cardGender }}</h3>
         </div>
-        <div class="gender">
+        <div class="location">
           <h3>{{ cardLocation }}</h3>
         </div>
       </div>
@@ -119,7 +119,8 @@ export default {
       }
 
       .status,
-      .gender {
+      .gender,
+      .location {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -167,6 +168,12 @@ export default {
         opacity: 1;
         visibility: visible;
         transition-delay: 0.6s;
+      }
+
+      .location {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0.8s;
       }
     }
   }
