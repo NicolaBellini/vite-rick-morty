@@ -35,7 +35,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.row {
-  justify-content: center;
+.wrapper {
+  margin-top: 80px;
+  .row {
+    justify-content: center;
+  }
 }
 </style>
