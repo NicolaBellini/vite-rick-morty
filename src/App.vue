@@ -11,6 +11,7 @@ export default {
   data() {
     return {
       store,
+      isError: false,
     };
   },
   methods: {
@@ -29,13 +30,14 @@ export default {
           this.store.nameList = this.store.cardList.map((item) => item.name);
           console.log(this.store.nameList);
           this.store.errorString = "";
+          this.isError = false;
         })
         .catch(
           (error) => console.log(error),
           (this.store.errorString =
-            "Non ci sono persone con quel nome in questo universo!!")
+            "Non ci sono persone con quel nome in questo universo!!"),
+          (this.isError = true)
         );
-      console.log(this.store.errorString);
     },
   },
 
@@ -48,8 +50,8 @@ export default {
 <template>
   <div class="wrapper">
     <Header @search="getApi()" /><br />
-    <div class="error">{{ this.store.errorString }}</div>
-    <Main />
+    <div v-if="this.isError" class="error">{{ this.store.errorString }}</div>
+    <Main v-else-if="!this.isError" />
   </div>
 </template>
 
@@ -57,9 +59,10 @@ export default {
 @use "./assets/scss/main.scss";
 
 .wrapper {
-  height: 100vh;
   background-image: linear-gradient(to right, black, rgb(72, 143, 0), black);
   .error {
+    height: 100vh;
+    background-image: linear-gradient(to right, black, rgb(72, 143, 0), black);
     margin-top: 150px;
     color: greenyellow;
     font-size: 3rem;
