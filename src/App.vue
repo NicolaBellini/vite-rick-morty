@@ -17,6 +17,7 @@ export default {
     getApi() {
       this.store.cardList = [];
       this.store.nameList = [];
+
       axios
         .get(this.store.apiUrl, {
           params: this.store.queryParams,
@@ -27,8 +28,14 @@ export default {
           console.log("nello store", this.store.cardList[0]);
           this.store.nameList = this.store.cardList.map((item) => item.name);
           console.log(this.store.nameList);
+          this.store.errorString = "";
         })
-        .catch((error) => console.log(error));
+        .catch(
+          (error) => console.log(error),
+          (this.store.errorString =
+            "Non ci sono persone con quel nome in questo universo!!")
+        );
+      console.log(this.store.errorString);
     },
   },
 
@@ -41,6 +48,7 @@ export default {
 <template>
   <div class="wrapper">
     <Header @search="getApi()" /><br />
+    <div class="error">{{ this.store.errorString }}</div>
     <Main />
   </div>
 </template>
@@ -49,6 +57,13 @@ export default {
 @use "./assets/scss/main.scss";
 
 .wrapper {
+  height: 100vh;
   background-image: linear-gradient(to right, black, rgb(72, 143, 0), black);
+  .error {
+    margin-top: 150px;
+    color: greenyellow;
+    font-size: 3rem;
+    text-align: center;
+  }
 }
 </style>
