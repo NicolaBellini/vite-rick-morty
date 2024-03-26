@@ -40,7 +40,7 @@ export default {
 
 <template>
   <div class="wrapper">
-    <Header /><br />
+    <Header @search="getApi()" /><br />
     <Main />
   </div>
 </template>

@@ -28,8 +28,14 @@ export default {
               type="search"
               placeholder="Ricerca per nome"
               aria-label="Search"
+              v-model="this.store.queryParams.name"
+              @key.up="$emit('search')"
             />
-            <button class="btn btn-outline-success" type="submit">
+            <button
+              class="btn btn-outline-success"
+              type="submit"
+              @click="$emit('search')"
+            >
               Dai Morty!
             </button>
           </form>

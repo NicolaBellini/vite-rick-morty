@@ -10,6 +10,7 @@ export default {
   },
 };
 </script>
+
 <!-- <div class="card my-card" style="width: 18rem">
   <img :src="cardImage" class="card-img-top" :alt="cardName" />
   <div class="card-body">
