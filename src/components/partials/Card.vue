@@ -35,7 +35,7 @@ export default {
           <h3>{{ cardGender }}</h3>
         </div>
         <div class="location">
-          <h3>{{ cardLocation }}</h3>
+          <h3>{{ cardSpecies }}</h3>
         </div>
       </div>
     </div>

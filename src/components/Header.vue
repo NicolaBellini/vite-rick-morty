@@ -23,6 +23,25 @@ export default {
             />
           </a>
           <form class="d-flex" role="search">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              @change="
+                console.log('Vecchio species:', this.store.queryParams.species),
+                  (this.store.queryParams.species = $event.target.value),
+                  console.log('Nuovo status:', this.store.queryParams.species),
+                  $emit('search')
+              "
+            >
+              <option value="" selected>Status</option>
+              <option
+                v-for="(item, index) in this.store.speciesList"
+                :key="index"
+                :value="item"
+              >
+                {{ item }}
+              </option>
+            </select>
             <!-- INPUT STATUS -->
             <select
               class="form-select"

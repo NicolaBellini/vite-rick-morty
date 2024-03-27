@@ -27,7 +27,14 @@ export default {
           this.store.cardList = res.data.results;
           // this.store.nameList = this.store.cardList.map((item) => item.name);
           this.store.nameList = this.store.cardList.map((item) => item.name);
-          console.log("nello store", this.store.nameList);
+          this.store.statusList = [
+            ...new Set(this.store.cardList.map((item) => item.status)),
+          ];
+          this.store.speciesList = [
+            ...new Set(this.store.cardList.map((item) => item.species)),
+          ];
+
+          console.log("nello store", this.store.speciesList);
 
           this.store.errorString = "";
           this.isError = false;
