@@ -23,6 +23,7 @@ export default {
             />
           </a>
           <form class="d-flex" role="search">
+            <!-- select species -->
             <select
               class="form-select"
               aria-label="Default select example"

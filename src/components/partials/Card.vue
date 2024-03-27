@@ -7,6 +7,7 @@ export default {
     cardSpecies: String,
     cardImage: String,
     cardLocation: String,
+    cardId: String,
   },
 };
 </script>
@@ -21,7 +22,7 @@ export default {
 </div> -->
 
 <template>
-  <div class="container">
+  <div>
     <div class="card">
       <div class="imgBx">
         <img :src="cardImage" :alt="cardName" />
@@ -36,6 +37,7 @@ export default {
         </div>
         <div class="location">
           <h3>{{ cardSpecies }}</h3>
+          <h3>{{ cardId }}</h3>
         </div>
       </div>
     </div>
@@ -48,7 +50,7 @@ export default {
 
   .card {
     position: relative;
-    width: 350px;
+    width: 100%;
     height: 450px;
     background: #232323;
     border-radius: 20px;
@@ -63,7 +65,7 @@ export default {
       width: 100%;
       height: 100%;
       background: #d5d5d5;
-      clip-path: circle(450px at 50% 80%);
+      clip-path: circle(400px at 50% 80%);
       transition: 0.3s ease;
     }
 
@@ -75,7 +77,7 @@ export default {
       content: url("https://pendragongamestudio.com/it/wp-content/uploads/sites/2/2019/05/0wzY6AgU.png");
       position: absolute;
       top: 30%;
-      left: -40%;
+      left: -60%;
       transform: scale(0.4);
     }
     &hover:after {

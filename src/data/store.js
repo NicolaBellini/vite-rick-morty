@@ -2,6 +2,8 @@ import { reactive } from "vue";
 
 export const store = reactive({
   apiUrl: "https://rickandmortyapi.com/api/character",
+  nextPageUrl: "",
+  prevPageUrl: "",
   cardList: [],
   nameList: [],
   speciesList: [],
@@ -12,4 +14,6 @@ export const store = reactive({
     species: "",
   },
   errorString: "",
+  counterPage: 0,
+  pageNumber: 0,
 });

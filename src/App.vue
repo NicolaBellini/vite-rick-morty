@@ -16,54 +16,59 @@ export default {
   },
   methods: {
     getApi() {
-      // this.getParams();
       this.store.cardList = [];
       this.store.nameList = [];
-      // this.store.statusList = [];
+
       axios
         .get(this.store.apiUrl, {})
 
         .then((res) => {
           this.store.cardList = res.data.results;
-          // this.store.nameList = this.store.cardList.map((item) => item.name);
+
+          this.store.nextPageUrl = res.data.info.next;
+
+          this.store.pageNumber = res.data.info.pages;
+
+          console.log("nello store", this.store.pageNumber);
+
           this.store.nameList = this.store.cardList.map((item) => item.name);
+          // creazione array degli status per popolare la select
           this.store.statusList = [
             ...new Set(this.store.cardList.map((item) => item.status)),
           ];
+          // creazione array degli species per popolare la select
           this.store.speciesList = [
             ...new Set(this.store.cardList.map((item) => item.species)),
           ];
 
-          console.log("nello store", this.store.speciesList);
-
           this.store.errorString = "";
           this.isError = false;
         })
         .catch(
           (error) => console.log(error),
-          (this.store.errorString =
-            "Non ci sono persone con qual nome in questo universo!!"),
+          (this.store.errorString = ""),
           (this.isError = true)
         );
     },
-    getParamsApi() {
+    getParamsApi(ApiUrl) {
       axios
-        .get(this.store.apiUrl, {
+        .get(ApiUrl, {
           params: this.store.queryParams,
         })
         .then((res) => {
           this.store.cardList = res.data.results;
-          // this.store.nameList = this.store.cardList.map((item) => item.name);
+
+          this.store.nextPageUrl = res.data.info.next;
+          this.store.prevPageUrl = res.data.info.prev;
+
           this.store.nameList = this.store.cardList.map((item) => item.name);
-          console.log("nello store", this.store.nameList);
 
           this.store.errorString = "";
           this.isError = false;
         })
         .catch(
           (error) => console.log(error),
-          (this.store.errorString =
-            "Non ci sono persone con qual nome in questo universo!!"),
+          (this.store.errorString = "Error"),
           (this.isError = true)
         );
     },
@@ -77,8 +82,14 @@ export default {
 
 <template>
   <div class="wrapper">
-    <Header @search="getParamsApi()" /><br />
-    <Main v-if="!this.isError" />
+    <Header
+      @search="getParamsApi(this.store.apiUrl), (this.store.counterPage = 0)"
+    /><br />
+    <Main
+      v-if="!this.isError"
+      @nextPage="getParamsApi(this.store.nextPageUrl)"
+      @prevPage="getParamsApi(this.store.prevPageUrl)"
+    />
     <div v-else-if="this.isError" class="error">
       {{ this.store.errorString }}
     </div>
