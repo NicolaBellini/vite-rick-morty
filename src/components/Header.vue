@@ -34,7 +34,7 @@ export default {
                   $emit('search')
               "
             >
-              <option value="" selected>Status</option>
+              <option value="" selected>Species</option>
               <option
                 v-for="(item, index) in this.store.speciesList"
                 :key="index"
