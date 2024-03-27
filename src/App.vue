@@ -16,34 +16,48 @@ export default {
   },
   methods: {
     getApi() {
+      // this.getParams();
       this.store.cardList = [];
       this.store.nameList = [];
-      this.store.statusList = [];
+      // this.store.statusList = [];
+      axios
+        .get(this.store.apiUrl, {})
+
+        .then((res) => {
+          this.store.cardList = res.data.results;
+          // this.store.nameList = this.store.cardList.map((item) => item.name);
+          this.store.nameList = this.store.cardList.map((item) => item.name);
+          console.log("nello store", this.store.nameList);
+
+          this.store.errorString = "";
+          this.isError = false;
+        })
+        .catch(
+          (error) => console.log(error),
+          (this.store.errorString =
+            "Non ci sono persone con qual nome in questo universo!!"),
+          (this.isError = true)
+        );
+    },
+    getParamsApi() {
       axios
         .get(this.store.apiUrl, {
           params: this.store.queryParams,
         })
         .then((res) => {
           this.store.cardList = res.data.results;
-          console.log("nello store", this.store.cardList[0].status);
+          // this.store.nameList = this.store.cardList.map((item) => item.name);
           this.store.nameList = this.store.cardList.map((item) => item.name);
-          this.store.cardList.forEach((item) => {
-            if (!this.store.statusList.includes(item.status)) {
-              this.store.statusList.push(item.status);
-            }
-          });
-          console.log(this.store.statusList);
+          console.log("nello store", this.store.nameList);
 
           this.store.errorString = "";
           this.isError = false;
-          this.store.queryParams.name = "";
         })
         .catch(
           (error) => console.log(error),
           (this.store.errorString =
-            "Non ci sono persone con quel nome in questo universo!!"),
-          (this.isError = true),
-          (this.store.queryParams.name = "")
+            "Non ci sono persone con qual nome in questo universo!!"),
+          (this.isError = true)
         );
     },
   },
@@ -56,7 +70,7 @@ export default {
 
 <template>
   <div class="wrapper">
-    <Header @search="getApi()" /><br />
+    <Header @search="getParamsApi()" /><br />
     <Main v-if="!this.isError" />
     <div v-else-if="this.isError" class="error">
       {{ this.store.errorString }}

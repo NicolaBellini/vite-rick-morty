@@ -24,16 +24,26 @@ export default {
           </a>
           <form class="d-flex" role="search">
             <!-- INPUT STATUS -->
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Open this select menu</option>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              @change="
+                console.log('Vecchio status:', this.store.queryParams.status),
+                  (this.store.queryParams.status = $event.target.value),
+                  console.log('Nuovo status:', this.store.queryParams.status),
+                  $emit('search')
+              "
+            >
+              <option value="" selected>Status</option>
               <option
                 v-for="(item, index) in this.store.statusList"
                 :key="index"
-                value="1"
+                :value="item"
               >
                 {{ item }}
               </option>
             </select>
+
             <!-- INPUT NOME -->
             <input
               class="form-control me-2"
@@ -41,16 +51,8 @@ export default {
               placeholder="Ricerca per nome"
               aria-label="Search"
               v-model="this.store.queryParams.name"
-              @key.up="$emit('search')"
+              @keyup="$emit('search')"
             />
-            <!-- BOTTONE AVVIA RICERCA -->
-            <button
-              class="btn btn-outline-success"
-              type="submit"
-              @click="$emit('search')"
-            >
-              Dai Morty!
-            </button>
           </form>
         </div>
       </nav>
